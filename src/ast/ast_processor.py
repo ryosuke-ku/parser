@@ -17,5 +17,5 @@ class AstProcessor:
         walker = ParseTreeWalker()
         walker.walk(self.listener, parser.compilationUnit())
         # self.logger.debug('Display all data extracted by AST. \n' + pformat(self.listener.ast_info, width=160))
-        print(self.listener.ast_info)
+        # print(self.listener.ast_info)
         # return self.listener.ast_info

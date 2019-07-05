@@ -40,12 +40,16 @@ class BasicInfoListener(JavaParserListener):
         # ★ポイント６
         # c1 = ctx.getChild(0).getText()  # ---> return type
         c2 = ctx.getChild(1).getText()  # ---> method name
+        print("<Method Name> " + ctx.getChild(1).getText())
+        # line_number = str(ctx.start.line)
+        # column_number = str(ctx.start.column)
         # c3 = ctx.getChild(2).getText()  # ---> params
         # params = self.parse_method_params_block(ctx.getChild(2))
 
         method_info = {
             # 'returnType': c1,
             'methodName': c2,
+            # 'methodName': c2 + ' ' + line_number + ' ' + column_number,
             # 'params': params,
             'callMethods': self.call_methods
         }
@@ -58,6 +62,7 @@ class BasicInfoListener(JavaParserListener):
         # column_number = str(ctx.start.column)
         # self.call_methods.append(line_number + ' ' + column_number + ' ' + ctx.parentCtx.getText())
         self.call_methods.append(ctx.parentCtx.getText())
+        print(ctx.parentCtx.getText())
 
     # Enter a parse tree produced by JavaParser#classDeclaration.
     # def enterClassDeclaration(self, ctx:JavaParser.ClassDeclarationContext):
