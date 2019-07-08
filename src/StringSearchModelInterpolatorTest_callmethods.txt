@@ -1,0 +1,165 @@
+setUp
+createInterpolator
+createInterpolator
+testInterpolateStringArray
+createModelBuildingRequest
+testInterpolateObjectWithStringArrayField
+testInterpolateObjectWithStringListField
+testInterpolateObjectWithStringListFieldAndOneLiteralValue
+testInterpolateObjectWithUnmodifiableStringListField
+testInterpolateObjectWithStringArrayListField
+testInterpolateObjectWithStringToStringMapField
+testInterpolateObjectWithStringToStringMapFieldAndOneLiteralValue
+testInterpolateObjectWithUnmodifiableStringToStringMapField
+testInterpolateObjectWithStringToStringArrayMapField
+call
+testConcurrentInterpolation
+getValueList
+getFooBar
+testFinalFieldsExcludedFromInterpolation
+testLocationTrackerShouldBeExcludedFromInterpolation
+
+
+super.setUp()
+lookup(ModelInterpolator.class)
+<Method Name> setUp
+<Method Name> createInterpolator
+<Method Name> createInterpolator
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(values,model,newFile("."),config,collector)
+<Method Name> testInterpolateStringArray
+config.setSystemProperties(p)
+<Method Name> createModelBuildingRequest
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+<Method Name> testInterpolateObjectWithStringArrayField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+values.add("${key}")
+values.add("${key2}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get(0)
+obj.values.get(1)
+<Method Name> testInterpolateObjectWithStringListField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+values.add("key")
+values.add("${key2}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get(0)
+obj.values.get(1)
+<Method Name> testInterpolateObjectWithStringListFieldAndOneLiteralValue
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+Collections.unmodifiableList(Collections.singletonList("${key}"))
+Collections.singletonList("${key}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get(0)
+<Method Name> testInterpolateObjectWithUnmodifiableStringListField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+p.setProperty("key3","value3")
+p.setProperty("key4","value4")
+values.add(newString[]{"${key}","${key2}"})
+values.add(newString[]{"${key3}","${key4}"})
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get(0)
+obj.values.get(0)
+obj.values.get(1)
+obj.values.get(1)
+<Method Name> testInterpolateObjectWithStringArrayListField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+values.put("key","${key}")
+values.put("key2","${key2}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get("key")
+obj.values.get("key2")
+<Method Name> testInterpolateObjectWithStringToStringMapField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+values.put("key","val")
+values.put("key2","${key2}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get("key")
+obj.values.get("key2")
+<Method Name> testInterpolateObjectWithStringToStringMapFieldAndOneLiteralValue
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+Collections.unmodifiableMap(Collections.singletonMap("key","${key}"))
+Collections.singletonMap("key","${key}")
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get("key")
+<Method Name> testInterpolateObjectWithUnmodifiableStringToStringMapField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+p.setProperty("key3","value3")
+p.setProperty("key4","value4")
+values.put("key",newString[]{"${key}","${key2}"})
+values.put("key2",newString[]{"${key3}","${key4}"})
+createInterpolator()
+createModelBuildingRequest(p)
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+obj.values.get("key")
+obj.values.get("key")
+obj.values.get("key2")
+obj.values.get("key2")
+<Method Name> testInterpolateObjectWithStringToStringArrayMapField
+p.setProperty("key","value")
+p.setProperty("key2","value2")
+p.setProperty("key3","value3")
+p.setProperty("key4","value4")
+p.setProperty("key5","value5")
+createInterpolator()
+getValueList()
+createModelBuildingRequest(p)
+countDownLatch.await()
+interpolator.interpolateObject(obj,model,newFile("."),config,collector)
+<Method Name> call
+futures.add(task)
+newThread(task).start()
+countDownLatch.countDown()
+result.get()
+<Method Name> testConcurrentInterpolation
+values.add(newString[]{"${key}","${key2}"})
+values.add(newString[]{"${key3}","${key4}"})
+values.add(newString[]{"${key}","${key2}"})
+values.add(newString[]{"${key3}","${key4}"})
+values.add(newString[]{"${key}","${key2}"})
+values.add(newString[]{"${key3}","${key4}"})
+<Method Name> getValueList
+<Method Name> getFooBar
+props.setProperty("expression","value")
+request.setUserProperties(props)
+interpolator.interpolateObject(newClassWithFinalField(),newModel(),null,request,problems)
+<Method Name> testFinalFieldsExcludedFromInterpolation
+props.setProperty("expression","value")
+request.setUserProperties(props)
+source.setLocation("${expression}")
+source.setModelId("${expression}")
+model.setLocation("",newInputLocation(1,1,source))
+interpolator.interpolateObject(model,model,null,request,problems)
+source.getLocation()
+source.getModelId()
+<Method Name> testLocationTrackerShouldBeExcludedFromInterpolation
+
