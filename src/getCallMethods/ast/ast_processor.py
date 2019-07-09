@@ -18,17 +18,4 @@ class AstProcessor:
         walker.walk(self.listener, parser.compilationUnit())
         # self.logger.debug('Display all data extracted by AST. \n' + pformat(self.listener.ast_info, width=160))
         # print(self.listener.ast_info)
-        # print(self.listener.call_methods)
-        print(self.listener.called_methods)
-        print(self.listener.called_methods['setUp'])
-        # print(self.listener.methods['testLocationTrackerShouldBeExcludedFromInterpolation'])
-        # print(len(self.listener.methods['testLocationTrackerShouldBeExcludedFromInterpolation']))
-        print(sum(len(v) for v in self.listener.called_methods['testLocationTrackerShouldBeExcludedFromInterpolation']))
-        print(self.listener.methods)
-        for method in self.listener.methods:
-            num = sum(len(v) for v in self.listener.called_methods[method])
-            for i in range(num):
-                print(method)
-                # print(num)
-
         # return self.listener.ast_info
