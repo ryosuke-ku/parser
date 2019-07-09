@@ -43,12 +43,13 @@ class BasicInfoListener(JavaParserListener):
         if 'assert' in ctx.parentCtx.getText():
             pass
         else:
-            s = cmName.rfind('.')
-            editcmName = cmName[s+1:]
+            # s = cmName.rfind('.')
+            # editcmName = cmName[s+1:]
 
-            b = editcmName.find('(')
-            fincmName = editcmName[:b]
+            # b = editcmName.find('(')
+            # fincmName = editcmName[:b]
             # print(fincmName)
-            self.call_methods.append(fincmName)
+            # self.call_methods.append(fincmName)
+            self.call_methods.append(cmName)
 
 

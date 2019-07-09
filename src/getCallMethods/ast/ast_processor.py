@@ -19,3 +19,12 @@ class AstProcessor:
         # self.logger.debug('Display all data extracted by AST. \n' + pformat(self.listener.ast_info, width=160))
         # print(self.listener.ast_info)
         # return self.listener.ast_info
+        # print(self.listener.call_methods)
+        for method in self.listener.methods:
+            # num = sum(len(v) for v in self.listener.called_methods[method])
+            # print(self.listener.called_methods[method][0])
+            num = len(self.listener.called_methods[method][0])
+            # print(num)
+            for i in range(num):
+                print(self.listener.called_methods[method][0][i])
+                # print(method)
