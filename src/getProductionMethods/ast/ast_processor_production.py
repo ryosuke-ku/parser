@@ -2,8 +2,8 @@ from antlr4 import FileStream, CommonTokenStream, ParseTreeWalker
 from ast.JavaLexer import JavaLexer
 from ast.JavaParser import JavaParser
 from pprint import pformat
-from ast.ast_processor2 import AstProcessor2
-from ast.basic_info_listener import BasicInfoListener
+from ast.ast_processor2_production import AstProcessor2
+from ast.basic_info_listener_production import BasicInfoListener
 import re
 
 class rdict(dict):
