@@ -27,10 +27,15 @@ if __name__ == '__main__':
     # print(len(AllPaths))
     # print(len(TestPaths))
     # print(len(ProductionPaths))
-    # print(len(TestPaths))
-    ast_info = AstProcessor(None, BasicInfoListener()).execute(target_file_path)
+    # # print(len(TestPaths))
+    # ast_info = AstProcessor(None, BasicInfoListener()).execute(target_file_path)
 
     # ast_info = AstProcessor2(None, BasicInfoListener()).execute(ProductionPath)
-    # for ProductionPath in ProductionPaths:
-    #     ast_info = AstProcessor(None, BasicInfoListener()).execute(ProductionPath)
+    AvaiTestPathsfile = open(r'AvaiTestPaths.txt','r',encoding="utf-8_sig")
+    readAvaiTestPathsfile = AvaiTestPathsfile.readlines()
+    AvaiTestPaths = [readAvaiTestPath.replace('\n', '') for readAvaiTestPath in readAvaiTestPathsfile]
+    print(AvaiTestPaths)
+
+    for AvaiTestPath in AvaiTestPaths:
+        ast_info = AstProcessor(None, BasicInfoListener()).execute('C:/Users/ryosuke-ku/Desktop/NiCad-5.1/systems/' + AvaiTestPath)
     

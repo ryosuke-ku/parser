@@ -5,6 +5,7 @@ from pprint import pformat
 from ast.ast_processor2_production import AstProcessor2
 from ast.basic_info_listener_production import BasicInfoListener
 import re
+from collections import defaultdict
 
 class rdict(dict):
     def __getitem__(self, key):
@@ -31,30 +32,24 @@ class AstProcessor:
         parser = JavaParser(CommonTokenStream(JavaLexer(FileStream(input_source, encoding="utf-8"))))
         walker = ParseTreeWalker()
         walker.walk(self.listener, parser.compilationUnit())
-        # self.logger.debug('Display all data extracted by AST. \n' + pformat(self.listener.ast_info, width=160))
-        # print(self.listener.ast_info)
-        # print(self.listener.call_methods)
-        # print(self.listener.called_methods)
-        # print(self.listener.called_methods['setUp'])
-        # print(self.listener.methods['testLocationTrackerShouldBeExcludedFromInterpolation'])
-        # print(len(self.listener.methods['testLocationTrackerShouldBeExcludedFromInterpolation']))
-        # print(sum(len(v) for v in self.listener.called_methods['testLocationTrackerShouldBeExcludedFromInterpolation']))
-        # print(self.listener.methods)
+
         cnt = 1
-        listmethods =[]
-        listcallmethods = []
+        listmethods = [] #テストメソッドを格納するリスト
+        listcallmethods = [] #テストメソッド内で呼び出されているメソッド呼び出しを格納するリスト
+
         ProductionPath = 'C:/Users/ryosuke-ku/Desktop/NiCad-5.1/systems/maven/maven-model-builder/src/main/java/org/apache/maven/model/interpolation/StringSearchModelInterpolator.java'
+        methods_list = AstProcessor2(None, BasicInfoListener()).execute(ProductionPath) #プロダクションファイルから取得したメソッド名(リスト)
         for method in self.listener.methods:
-            num = len(self.listener.called_methods[method][0])
+            num = len(self.listener.called_methods[method][0]) #メソッド呼び出しの個数
             # print(num)
 
             for i in range(num):
-                print(method + '/' + self.listener.called_methods[method][0][i])
-                listmethods.append(method)
-                listcallmethods.append(str(cnt) + ' ' + self.listener.called_methods[method][0][i])
+                # print(method + '/' + self.listener.called_methods[method][0][i])
+                listmethods.append(method) #listmethodsにテストメソッド名をメソッド呼び出しの数だけ格納する
+                listcallmethods.append(str(cnt) + ' ' + self.listener.called_methods[method][0][i]) #テストメソッド内で呼び出されているメソッド呼び出しを格納する、同じ名前のメソッド呼び出しを区別するためのcntのつける
                 cnt +=1
 
-        d = dict(zip(listcallmethods,listmethods))
+        d = dict(zip(listcallmethods,listmethods)) #テストメソッド名とテストメソッド内で呼び出されているメソッド呼び出しを １：リスト(複数) で対応付ける
         # print(d)
 
         rd = rdict(d)
@@ -64,20 +59,22 @@ class AstProcessor:
         # print(len(listmethods))
         # print(listcallmethods)
         # print(len(listcallmethods))
-        methods_list = AstProcessor2(None, BasicInfoListener()).execute(ProductionPath)
-        print(methods_list)
-        print('------------------------')
+       
+        # print(methods_list)
+        # print('------------------------')
 
+        dicMethods = defaultdict(list) #プロダクションファイルのすべてのメソッド名とテストファイルのすべてのメソッド名を対応付け
         for key in methods_list:
             # print(key)
             
-            if rd["^(?=.*" + key + ").*$"] == []:
+            if rd["^(?=.*" + key + ").*$"] == []: #keyを正規表現で与えて、valueが空の時
                 pass
             
             else:
-                print(key)
+                dicMethods[key].append(rd["^(?=.*" + key + ").*$"]) #プロダクションファイルのすべてのメソッド名とテストファイルのすべてのメソッド名を 1:リスト(複数) で対応付ける
+                # print(key)
                 print(rd["^(?=.*" + key + ").*$"])
-                print(len(rd["^(?=.*" + key + ").*$"]))
+                # print(len(rd["^(?=.*" + key + ").*$"]))
         
-
+        # print(dicMethods)
         # return self.listener.ast_info
